@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Medical insurance charges</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='home.css') }}">
+</head>
+<body>
+    <div class="form-body">
+        <div class="row">
+            <div class="form-holder">
+                <div class="form-content">
+                    <div class="form-items">
+                        {% if charges %}
+                        <div class="text-center" style="padding-bottom:10px;">
+                            <button class="btn btn-secondary"><a href="/" style="color:#fff">< Home</a></button>
+                        </div>
+                        <h3 class="text-center"> Medical Health Insurance Charges</h3>
+                        <br>
+                        <table class="table table-bordered table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Age</th>
+                    <th scope="col">Sex</th>
+                    <th scope="col">BMI</th>
+                    <th scope="col">CHILDREN</th>
+                    <th scope="col">Smoke</th>
+                    <th scope="col">Region</th>
+                    <th scope="col">Charges</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{data.age}}</td>
+                    <td>
+                        {% if data.sex == '0' %}
+                        Female
+                        {% else %}
+                        Male
+                        {% endif %}
+                    </td>
+                    <td>{{data.bmi}}</td>
+                    <td>{{data.children}}</td>
+                    <td>
+                    {% if data.smoker == '1' %}
+                        No
+                        {% else %}
+                        Yes
+                        {% endif %}
+                    </td>
+                    <td>{{data.region}}</td>
+                    <td>Rs. {{charges}}</td>
+                </tr>
+            </tbody>
+        </table>
+
+                        {% else %}
+                        <h3>Medical Health Insurance Form</h3>
+                        <p style="text-align:center">Fill in the data below.</p>
+                        <div >
+                       <form method="post" action="/get_charges">
+  <div class="form-group">
+    <label for="age">Age</label>
+    <input type="number" name="age" class="form-control" id="age" placeholder="Enter Age" required>
+  </div>
+  <div class="form-group">
+    <label for="sex">Sex</label>
+     <select class="form-control" name="sex" id="sex">
+      <option value="1">Male</option>
+      <option value="0">Female</option>
+    </select>
+  </div>
+   <div class="form-group">
+    <label for="bmi">BMI</label>
+    <input type="text" class="form-control" value="30" name="bmi" id="bmi" placeholder="Enter BMI">
+  </div>
+     <div class="form-group">
+    <label for="children">CHILDREN</label>
+     <select class="form-control" name="children" id="children">
+      <option value="0">0</option>
+      <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+         <option value="4">4</option>
+         <option value="5">5</option>
+    </select>
+  </div>
+                           <div class="form-group">
+    <label for="sex">Do you Smoke</label>
+     <select class="form-control" name="smoker" id="smoker">
+         <option value="1">No</option>
+      <option value="0">Yes</option>
+
+    </select>
+  </div>
+                            <div class="form-group">
+    <label for="sex">Region</label>
+     <select class="form-control" name="region" id="region">
+      <option value="region_southwest">Southwest</option>
+      <option value="region_southeast">Southeast</option>
+         <option value="region_northwest">Northwest</option>
+         <option value="region_northeast">Northeast</option>
+    </select>
+  </div>
+                           <div class="text-center">
+                               <button type="submit" class="btn btn-primary text-center">Submit</button>
+                           </div>
+
+</form>
+                    </div>
+                        {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
