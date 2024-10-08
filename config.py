@@ -1,5 +1,5 @@
 
-PORT = 8080
+PORT = 8000
 
 MODEL_PATH = 'App_Insurance/LinearReg_Model.pkl'
 
